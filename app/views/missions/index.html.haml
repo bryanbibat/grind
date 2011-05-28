@@ -1,2 +1,34 @@
-%h1 Missions#index
-%p Find me in app/views/missions/index.html.haml
+%h2 Available Missions
+
+%table
+  %tr
+    %th{ :rowspan => 2 } Name
+    %th{ :colspan => 7 } Requirements
+    %th{ :colspan => 2 } Rewards
+    %th{ :rowspan => 2 } Damage
+  %tr
+    %th LVL
+    %th Energy
+    %th Melee
+    %th Ranged
+    %th Defense
+    %th Agility
+    %th Cunning
+    %th XP
+    %th Credits
+
+  - @missions.each do |mission|
+    %tr 
+      %td= link_to mission.name, mission
+      %td= mission.req_level
+      %td= mission.req_energy
+      %td= mission.check_melee? ? "#{ mission.min_melee } - #{ mission.max_melee }" : ""
+      %td= mission.check_ranged? ? "#{ mission.min_ranged } - #{ mission.max_ranged }" : ""
+      %td= mission.check_defense? ? "#{ mission.min_defense } - #{ mission.max_defense }" : ""
+      %td= mission.check_agility? ? "#{ mission.min_agility } - #{ mission.max_agility }" : ""
+      %td= mission.check_cunning? ? "#{ mission.min_cunning } - #{ mission.max_cunning }" : ""
+      %td= "#{ mission.xp_min } - #{ mission.xp_max }"
+      %td= "#{ mission.credits_min } - #{ mission.credits_max }"
+      %td= mission.damage
+      - if mission.can_be_performed_by_user(current_user) 
+        %td= link_to "Perform Mission", perform_mission_path(mission), :method => :post

@@ -25,6 +25,14 @@
           = link_to "Inventory", "#"
           %br
           = link_to "Missions", missions_path
+        %p
+          = "HP: #{ current_user.health }"
+          %br
+          = "Energy: #{ current_user.energy }"
+          %br
+          = "Credits: #{ current_user.credits }"
+          %br
+          = "XP: #{ current_user.xp }/#{current_user.xp_for_next_level}"
 
         - if current_user.admin?
           %p

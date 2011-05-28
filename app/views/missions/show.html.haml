@@ -1,2 +1,13 @@
-%h1 Missions#show
-%p Find me in app/views/missions/show.html.haml
+%h2 Show Mission
+%p 
+  %strong Name:
+  = @mission.name
+- if flash.has_key? :mission_errors
+  .mission_errors
+    = simple_format flash[:mission_errors]
+- if flash.has_key? :mission_messages
+  .mission_messages
+    = simple_format flash[:mission_messages]
+%p
+  %td= link_to "Perform Mission", perform_mission_path(@mission), :method => :post
+

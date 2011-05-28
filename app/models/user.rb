@@ -49,14 +49,18 @@ class User < ActiveRecord::Base
   end
 
   def xp_for_next_level
-    User.xp_level_req(level - 1)
+    User.level_xp_req[level - 1]
+  end
+
+  def subtract_health(damage)
+    self.health -= damage
   end
 
   private
 
   def add_xp_and_check_level_up(xp_bonus)
     self.xp += xp_bonus
-    while xp >= xp_level_req
+    while xp >= xp_for_next_level
       level_up
     end
   end

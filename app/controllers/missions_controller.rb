@@ -12,10 +12,10 @@ class MissionsController < ApplicationController
     @mission = Mission.find(params[:id])
     if @mission.can_be_performed_by_user current_user
       if @mission.attempt current_user
-        flash[:mission_messages] = @mission.mission_messages
+        flash[:mission_messages] = @mission.mission_messages.join("\n")
         redirect_to @mission
       else
-        flash[:mission_errors] = @mission.misson_errors
+        flash[:mission_errors] = @mission.misson_errors.join("\n")
         redirect_to @mission
       end
     else

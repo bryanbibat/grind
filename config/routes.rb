@@ -8,6 +8,11 @@ Grind::Application.routes.draw do
     resources :items
   end
 
-  resources :missions
+  resources :missions do
+    member do
+      post "perform"
+    end
+  end
+
 
 end
