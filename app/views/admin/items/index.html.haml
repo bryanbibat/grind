@@ -1,0 +1,28 @@
+%h2 Item Maintenance
+
+%table
+  %tr
+    %th Name
+    %th Type
+    %th Melee
+    %th Ranged
+    %th Defense
+    %th Agility
+    %th Cunning
+    %th Research Required 
+    %th Price
+  - @items.each do |item|
+    %tr 
+      %td= item.name
+      %td= item.item_type
+      %td= item.melee
+      %td= item.ranged
+      %td= item.defense
+      %td= item.agility
+      %td= item.cunning
+      %td= item.req_research
+      %td= number_to_currency item.price
+      %td= link_to "Edit", edit_admin_item_path(item)
+
+
+%p= link_to "New Item", new_admin_item_path

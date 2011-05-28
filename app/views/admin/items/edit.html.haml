@@ -1,0 +1,4 @@
+%h2 Edit Item
+
+= form_for @item, :url => admin_item_path(@item) do |f|
+  = render :partial => "form", :locals => { :f => f }

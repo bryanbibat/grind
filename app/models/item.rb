@@ -1,4 +1,8 @@
 class Item < ActiveRecord::Base
+  def self.types 
+    %w{ Melee Ranged Armor Accessory }
+  end
   validates_presence_of :name
-  validates_inclusion_of :type, :in => %w{ Melee Ranged Armor Accessory }
+  validates_inclusion_of :item_type, :in => self.types
+
 end

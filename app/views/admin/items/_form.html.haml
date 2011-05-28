@@ -1,0 +1,45 @@
+.errors 
+  = @item.errors.full_messages
+.field
+  = f.label :name
+  %br
+  = f.text_field :name
+.field
+  = f.label :item_type
+  %br
+  = f.select :item_type, Item.types
+.field
+  = f.label :description
+  %br
+  = f.text_field :description
+.field
+  = f.label :melee
+  %br
+  = f.text_field :melee
+.field
+  = f.label :ranged
+  %br
+  = f.text_field :ranged
+.field
+  = f.label :defense
+  %br
+  = f.text_field :defense
+.field
+  = f.label :agility
+  %br
+  = f.text_field :agility
+.field
+  = f.label :cunning
+  %br
+  = f.text_field :cunning
+.field
+  = f.label :req_research
+  %br
+  = f.text_field :req_research
+
+.field
+  = f.label :price
+  %br
+  = f.text_field :price
+.actions
+  = f.submit

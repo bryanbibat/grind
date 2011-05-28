@@ -10,11 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528025707) do
+ActiveRecord::Schema.define(:version => 20110528042755) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "item_type"
     t.text     "description"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(:version => 20110528025707) do
     t.datetime "updated_at"
   end
 
+  add_index "items", ["item_type"], :name => "index_items_on_item_type"
   add_index "items", ["name"], :name => "index_items_on_name", :unique => true
-  add_index "items", ["type"], :name => "index_items_on_type", :unique => true
 
   create_table "loots", :force => true do |t|
     t.integer  "mission_id",                           :null => false
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20110528025707) do
     t.boolean  "admin",                                 :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "level"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

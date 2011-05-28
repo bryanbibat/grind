@@ -5,6 +5,7 @@ Grind::Application.routes.draw do
 
   namespace :admin do
     resources :missions
+    resources :items
   end
 
 end
