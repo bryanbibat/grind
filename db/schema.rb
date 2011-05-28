@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528062022) do
+ActiveRecord::Schema.define(:version => 20110528092127) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -108,11 +108,12 @@ ActiveRecord::Schema.define(:version => 20110528062022) do
   add_index "owned_items", ["user_id"], :name => "index_owned_items_on_user_id"
 
   create_table "research_progresses", :force => true do |t|
-    t.integer  "user_id",                                :null => false
-    t.integer  "item_id",                                :null => false
+    t.integer  "user_id",                                    :null => false
+    t.integer  "item_id",                                    :null => false
     t.integer  "progress",   :limit => 8, :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed",               :default => false
   end
 
   add_index "research_progresses", ["item_id"], :name => "index_research_progresses_on_item_id"

@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   validates_numericality_of :available_points, :only_integer => true, :greater_than_or_equal_to => 0
 
   has_many :owned_items
+  has_many :items, :through => :owned_items, :uniq => true
+  has_many :research_progresses
 
   def self.level_xp_req
     #fibonacci sequence
@@ -52,6 +54,11 @@ class User < ActiveRecord::Base
     add_xp_and_check_level_up mission.xp_reward
     if mission.loot_reward.class == OwnedItem
       self.owned_items << mission.loot_reward
+      item_id = mission.loot_reward.item_id
+      unless research_progresses.map{ |x| x.item_id }.include? item_id
+        mission.loot_reward.item.reload
+        research_progresses.create(:item_id => item_id)
+      end
     end
   end
 

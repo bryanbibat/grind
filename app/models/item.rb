@@ -5,4 +5,7 @@ class Item < ActiveRecord::Base
   validates_presence_of :name
   validates_inclusion_of :item_type, :in => self.types
 
+  has_many :owned_items
+  has_many :research_progresses
+
 end

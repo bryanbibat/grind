@@ -1,0 +1,14 @@
+%h2 Research Projects
+
+%table
+  %tr
+    %th Name
+    %th Progress
+    %th Status 
+  - @research_projects.each do |res|
+    %tr
+      %td= res.item.name
+      %td= "#{ res.progress } / #{ res.item.req_research }"
+      %td= res.completed? ? "Completed" : "WIP"
+      - if !res.completed? and current_user.energy > 0
+        %td= link_to "Perform Research", perform_research_project_path(res), :method => :post

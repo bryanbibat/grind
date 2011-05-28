@@ -26,4 +26,9 @@ Grind::Application.routes.draw do
     post "upgrade_cunning"
   end
 
+  resources :research_projects do
+    member do
+      post "perform"
+    end
+  end
 end
