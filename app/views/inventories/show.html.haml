@@ -1,3 +1,26 @@
+%h2 Equip Your Items
+
+= form_for current_user, :url => inventory_path do |f|
+  .field
+    = f.label :melee_weapon_id, "Melee Weapon"
+    %br
+    = f.collection_select :melee_weapon_id, current_user.researched_items("Melee"), :id, :dropdown_display, :include_blank => "Shiv"
+  .field
+    = f.label :ranged_weapon_id, "Ranged Weapon"
+    %br
+    = f.collection_select :ranged_weapon_id, current_user.researched_items("Ranged"), :id, :dropdown_display, :include_blank => "Sling"
+  .field
+    = f.label :armor_id, "Armor"
+    %br
+    = f.collection_select :armor_id, current_user.researched_items("Armor"), :id, :dropdown_display, :include_blank => "Tattered Clothes"
+  .field
+    = f.label :tool_id, "Tool"
+    %br
+    = f.collection_select :tool_id, current_user.researched_items("Accessory"), :id, :dropdown_display, :include_blank => "Elbow Grease"
+  .actions
+    = f.submit "Update Equipment"
+
+
 %h2 Your items
 
 %table

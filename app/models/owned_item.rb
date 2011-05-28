@@ -26,6 +26,10 @@ class OwnedItem < ActiveRecord::Base
   def display_name
     "a#{rarity == "Uncommon" ? "n" : ""} #{rarity == "Common" ? "" : rarity} #{item.name}"
   end
+  
+  def dropdown_display
+    "#{rarity == "Common" ? "" : rarity} #{item.name} (#{ effective_melee }/#{ effective_ranged }/#{ effective_defense }/#{ effective_agility }/#{ effective_cunning })"
+  end
 
   def effective_melee
     item.melee + melee

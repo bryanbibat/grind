@@ -16,4 +16,5 @@ class ResearchProjectsController < ApplicationController
       render "index"
     end
   end
+
 end

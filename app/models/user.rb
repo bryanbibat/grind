@@ -5,13 +5,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :display_name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :display_name, :melee_weapon_id,:ranged_weapon_id, :armor_id, :tool_id
 
   validates_numericality_of :available_points, :only_integer => true, :greater_than_or_equal_to => 0
 
   has_many :owned_items
   has_many :items, :through => :owned_items, :uniq => true
   has_many :research_progresses
+  belongs_to :melee_weapon, :class_name => "OwnedItem"
+  belongs_to :ranged_weapon, :class_name => "OwnedItem"
+  belongs_to :armor, :class_name => "OwnedItem"
+  belongs_to :tool, :class_name => "OwnedItem"
 
   def self.level_xp_req
     #fibonacci sequence
@@ -30,23 +34,38 @@ class User < ActiveRecord::Base
   end
 
   def effective_melee
-    melee
+    melee + (melee_weapon.nil? ? 0 : melee_weapon.effective_melee) +
+      (ranged_weapon.nil? ? 0 : ranged_weapon.effective_melee) +
+      (armor.nil? ? 0 : armor.effective_melee) +
+      (tool.nil? ? 0 : tool.effective_melee)
   end
 
   def effective_ranged
-    ranged
+    ranged + (melee_weapon.nil? ? 0 : melee_weapon.effective_ranged) +
+      (ranged_weapon.nil? ? 0 : ranged_weapon.effective_ranged) +
+      (armor.nil? ? 0 : armor.effective_ranged) +
+      (tool.nil? ? 0 : tool.effective_ranged)
   end
 
   def effective_defense
-    defense
+    defense + (melee_weapon.nil? ? 0 : melee_weapon.effective_defense) +
+      (ranged_weapon.nil? ? 0 : ranged_weapon.effective_defense) +
+      (armor.nil? ? 0 : armor.effective_defense) +
+      (tool.nil? ? 0 : tool.effective_defense)
   end
 
   def effective_agility
-    agility
+    agility + (melee_weapon.nil? ? 0 : melee_weapon.effective_agility) +
+      (ranged_weapon.nil? ? 0 : ranged_weapon.effective_agility) +
+      (armor.nil? ? 0 : armor.effective_agility) +
+      (tool.nil? ? 0 : tool.effective_agility)
   end
   
   def effective_cunning
-    cunning
+    cunning + (melee_weapon.nil? ? 0 : melee_weapon.effective_cunning) +
+      (ranged_weapon.nil? ? 0 : ranged_weapon.effective_cunning) +
+      (armor.nil? ? 0 : armor.effective_cunning) +
+      (tool.nil? ? 0 : tool.effective_cunning)
   end
 
   def apply_rewards(mission)
@@ -103,6 +122,14 @@ class User < ActiveRecord::Base
     self.available_points -= 1
     self.cunning += 1
     save
+  end
+
+  def researched_ids(type)
+    research_progresses.where(:completed => true).select { |x| x.item.item_type == type }.map { |x| x.item_id }
+  end
+
+  def researched_items(type)
+    owned_items.where(:item_id => researched_ids(type))
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528092127) do
+ActiveRecord::Schema.define(:version => 20110528102406) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -146,6 +146,10 @@ ActiveRecord::Schema.define(:version => 20110528092127) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "level",                  :limit => 8,   :default => 1,     :null => false
+    t.integer  "melee_weapon_id"
+    t.integer  "ranged_weapon_id"
+    t.integer  "armor_id"
+    t.integer  "tool_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
