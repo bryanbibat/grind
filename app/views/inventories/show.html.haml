@@ -1,0 +1,22 @@
+%h2 Your items
+
+%table
+  %tr
+    %th Name
+    %th Type
+    %th Melee
+    %th Ranged
+    %th Defense
+    %th Agility
+    %th Cunning
+    %th Price
+  - @owned_items.each do |item|
+    %tr 
+      %td= item.display_name
+      %td= item.item.item_type
+      %td= item.effective_melee
+      %td= item.effective_ranged
+      %td= item.effective_defense
+      %td= item.effective_agility
+      %td= item.effective_cunning
+      %td= number_to_currency item.effective_price

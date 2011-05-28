@@ -16,6 +16,8 @@ Grind::Application.routes.draw do
     end
   end
 
+  resource :inventory
+
   resource :profile do
     post "upgrade_melee"
     post "upgrade_ranged"

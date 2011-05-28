@@ -52,23 +52,23 @@ class OwnedItem < ActiveRecord::Base
   end
 
   def roll_bonuses(min_bonus, max_bonus)
-    if melee > 0 
-      self.melee = (min_bonus + rand(max_bonus - min_bonus)) / 100
+    if item.melee > 0 
+      self.melee = (self.item.melee * (min_bonus + rand(max_bonus - min_bonus))) / 100 
     end
-    if ranged > 0 
-      self.ranged = (min_bonus + rand(max_bonus - min_bonus))/ 100
+    if item.ranged > 0 
+      self.ranged = (self.item.ranged * (min_bonus + rand(max_bonus - min_bonus)))/ 100
     end
-    if defense > 0 
-      self.defense = (min_bonus + rand(max_bonus - min_bonus))/ 100
+    if item.defense > 0 
+      self.defense = (self.item.defense * (min_bonus + rand(max_bonus - min_bonus)))/ 100
     end
-    if agility > 0 
-      self.agility = (min_bonus + rand(max_bonus - min_bonus))/ 100
+    if item.agility > 0 
+      self.agility = (self.item.agility * (min_bonus + rand(max_bonus - min_bonus)))/ 100
     end
-    if cunning > 0 
-      self.cunning = (min_bonus + rand(max_bonus - min_bonus))/ 100
+    if item.cunning > 0 
+      self.cunning = (self.item.cunning * (min_bonus + rand(max_bonus - min_bonus)))/ 100
     end
-    if price_bonus > 0 
-      self.price_bonus = (min_bonus + rand(max_bonus - min_bonus))/ 100
+    if item.price > 0 
+      self.price_bonus = (self.item.price * (min_bonus + rand(max_bonus - min_bonus)))/ 100
     end
   end
 
