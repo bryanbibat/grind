@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :display_name
 
   validates_numericality_of :available_points, :only_integer => true, :greater_than_or_equal_to => 0
+
+  has_many :owned_items
+
   def self.level_xp_req
     #fibonacci sequence
     [10, 20, 30, 50, 80, 
@@ -47,6 +50,9 @@ class User < ActiveRecord::Base
   def apply_rewards(mission)
     self.credits += mission.credits_reward
     add_xp_and_check_level_up mission.xp_reward
+    if mission.loot_reward.class == OwnedItem
+      self.owned_items << mission.loot_reward
+    end
   end
 
   def xp_for_next_level

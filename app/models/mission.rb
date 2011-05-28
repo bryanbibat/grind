@@ -45,6 +45,9 @@ class Mission < ActiveRecord::Base
       user.apply_rewards(self)
       @mission_messages = ["Mission successful",
         "You gained #{ @credits_reward } credits and #{ @xp_reward } XP"]
+      if loot_reward.class == OwnedItem
+        @mission_messages << ["You also found #{ loot_reward.display_name } "]
+      end
       user.save
       return true
     else
@@ -62,6 +65,12 @@ class Mission < ActiveRecord::Base
   
   def xp_reward
     @xp_reward ||= xp_min + rand(xp_max - xp_min + 1)
+  end
+
+  def loot_reward
+    return @loot_reward unless @loot_reward.nil?
+    loot = roll_for_loot
+    @loot_reward = loot.nil? ? "none" : OwnedItem.generate_new_loot(loot)
   end
 
   private
@@ -104,4 +113,21 @@ class Mission < ActiveRecord::Base
     end
     user_points
   end
+
+  def roll_for_loot
+    possible_loots = self.loots
+    roll_result = rand(10000) + 1
+    logger.info possible_loots.inspect
+    logger.info roll_result
+    while !possible_loots.empty?
+      if roll_result <= possible_loots[0].drop_rate_10000
+        return possible_loots[0]
+      else
+        roll_result -= possible_loots[0].drop_rate_10000
+        possible_loots.shift
+      end
+    end
+    nil
+  end
+
 end
