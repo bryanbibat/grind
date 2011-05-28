@@ -1,0 +1,8 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+Gemfile.lock
+.*.sw[a-z]
+*.un~
+Session.vim
