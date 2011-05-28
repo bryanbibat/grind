@@ -21,11 +21,11 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
-#notice {
+#notice, .mission_messages {
   color: green;
 }
 
-#alert { 
+#alert, .mission_errors { 
   color: red;
 }
 
