@@ -1,0 +1,4 @@
+%h2 Edit Mission
+
+- form_for @mission, :url => admin_mission_path(@mission) do |f|
+  = render :partial => "form", :locals => { :f => f }

@@ -1,0 +1,96 @@
+.errors 
+  = @mission.errors.full_messages
+.field
+  = f.label :name
+  %br
+  = f.text_field :name
+.field
+  = f.label :subtitle
+  %br
+  = f.text_field :subtitle
+.field
+  = f.label :description
+  %br
+  = f.text_field :description
+.field
+  = f.label :req_level
+  %br
+  = f.text_field :req_level
+.field
+  = f.label :req_energy
+  %br
+  = f.text_field :req_energy
+.field
+  = f.label :xp_min
+  %br
+  = f.text_field :xp_min
+.field
+  = f.label :xp_max
+  %br
+  = f.text_field :xp_max
+.field
+  = f.label :damage
+  %br
+  = f.text_field :damage
+
+.field
+  = f.label :check_melee
+  = f.check_box :check_melee
+.field
+  = f.label :min_melee
+  %br
+  = f.text_field :min_melee
+.field
+  = f.label :max_melee
+  %br
+  = f.text_field :max_melee
+
+.field
+  = f.label :check_ranged
+  = f.check_box :check_ranged
+.field
+  = f.label :min_ranged
+  %br
+  = f.text_field :min_ranged
+.field
+  = f.label :max_ranged
+  %br
+  = f.text_field :max_ranged
+
+.field
+  = f.label :check_defense
+  = f.check_box :check_defense
+.field
+  = f.label :min_defense
+  %br
+  = f.text_field :min_defense
+.field
+  = f.label :max_defense
+  %br
+  = f.text_field :max_defense
+
+.field
+  = f.label :check_agility
+  = f.check_box :check_agility
+.field
+  = f.label :min_agility
+  %br
+  = f.text_field :min_agility
+.field
+  = f.label :max_agility
+  %br
+  = f.text_field :max_agility
+
+.field
+  = f.label :check_cunning
+  = f.check_box :check_cunning
+.field
+  = f.label :min_cunning
+  %br
+  = f.text_field :min_cunning
+.field
+  = f.label :max_cunning
+  %br
+  = f.text_field :max_cunning
+.actions
+  = f.submit

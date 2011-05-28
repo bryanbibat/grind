@@ -1,0 +1,30 @@
+%h2 Whee index!
+
+%table
+  %tr
+    %th Name
+    %th LVL
+    %th Energy
+    %th XP
+    %th DMG
+    %th Melee
+    %th Ranged
+    %th Defense
+    %th Agility
+    %th Cunning
+  - @missions.each do |mission|
+    %tr 
+      %td= mission.name
+      %td= mission.req_level
+      %td= mission.req_energy
+      %td= "#{ mission.xp_min } - #{ mission.xp_max }"
+      %td= mission.damage
+      %td= mission.check_melee? ? "#{ mission.min_melee } - #{ mission.max_melee }" : ""
+      %td= mission.check_ranged? ? "#{ mission.min_ranged } - #{ mission.max_ranged }" : ""
+      %td= mission.check_defense? ? "#{ mission.min_defense } - #{ mission.max_defense }" : ""
+      %td= mission.check_agility? ? "#{ mission.min_agility } - #{ mission.max_agility }" : ""
+      %td= mission.check_cunning? ? "#{ mission.min_cunning } - #{ mission.max_cunning }" : ""
+      %td= link_to "Edit", edit_admin_mission_path(mission)
+
+
+%p= link_to "New Mission", new_admin_mission_path
