@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528042755) do
+ActiveRecord::Schema.define(:version => 20110528053602) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20110528042755) do
   add_index "loots", ["mission_id"], :name => "index_loots_on_mission_id"
 
   create_table "missions", :force => true do |t|
-    t.string   "name",                              :null => false
+    t.string   "name",                                             :null => false
     t.string   "subtitle"
     t.text     "description"
     t.string   "picture_file_name"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(:version => 20110528042755) do
     t.integer  "max_cunning",          :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "credits_min",          :limit => 8, :default => 0
+    t.integer  "credits_max",          :limit => 8, :default => 0
   end
 
   add_index "missions", ["name"], :name => "index_missions_on_name", :unique => true

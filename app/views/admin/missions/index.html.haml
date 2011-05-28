@@ -6,6 +6,7 @@
     %th LVL
     %th Energy
     %th XP
+    %th Credits
     %th DMG
     %th Melee
     %th Ranged
@@ -18,6 +19,7 @@
       %td= mission.req_level
       %td= mission.req_energy
       %td= "#{ mission.xp_min } - #{ mission.xp_max }"
+      %td= "#{ mission.credits_min } - #{ mission.credits_max }"
       %td= mission.damage
       %td= mission.check_melee? ? "#{ mission.min_melee } - #{ mission.max_melee }" : ""
       %td= mission.check_ranged? ? "#{ mission.min_ranged } - #{ mission.max_ranged }" : ""
