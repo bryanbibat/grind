@@ -1,6 +1,8 @@
 class Mission < ActiveRecord::Base
   validates_presence_of :name, :req_level, :req_energy, :xp_min, :xp_max
 
+  has_many :loots
+
   def self.available_missions(user)
     where("req_level <= ?", user.level)
   end

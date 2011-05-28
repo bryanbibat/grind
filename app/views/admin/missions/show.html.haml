@@ -1,0 +1,28 @@
+%h2 Show Mission
+%p 
+  %strong Name:
+  = @mission.name
+
+%h3 Loots
+
+%table
+  %tr
+    %th Item
+    %th Drop rate (per 10k)
+    %th Uncommon rate (per 1k)
+    %th Max uncommon bonus (percent increase)
+    %th Rare rate (per 1k)
+    %th Max rare bonus (percent increase)
+  - @mission.loots.each do |loot|
+    %tr
+      %td= loot.item.name
+      %td= loot.drop_rate_10000
+      %td= loot.uncommon_rate_1000
+      %td= loot.uncommon_bonus
+      %td= loot.rare_rate_1000
+      %td= loot.rare_bonus
+      %td= link_to "Edit", edit_admin_mission_loot_path(@mission, loot)
+
+%p
+  %td= link_to "New Loot", new_admin_mission_loot_path(@mission)
+

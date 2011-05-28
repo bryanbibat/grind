@@ -4,7 +4,9 @@ Grind::Application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    resources :missions
+    resources :missions do
+      resources :loots
+    end
     resources :items
   end
 

@@ -19,6 +19,10 @@ module Admin
       end
     end
 
+    def show
+      @mission = Mission.find(params[:id])
+    end
+
     def edit
       @mission = Mission.find(params[:id])
     end

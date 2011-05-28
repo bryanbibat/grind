@@ -15,7 +15,7 @@
     %th Cunning
   - @missions.each do |mission|
     %tr 
-      %td= mission.name
+      %td= link_to mission.name, admin_mission_path(mission)
       %td= mission.req_level
       %td= mission.req_energy
       %td= "#{ mission.xp_min } - #{ mission.xp_max }"

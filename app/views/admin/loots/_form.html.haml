@@ -1,0 +1,33 @@
+.field
+  %label Mission
+  %br
+  = @mission.name
+.field
+  = f.label :item_id, "Item"
+  %br
+  = f.collection_select :item_id, Item.order(:name).all, :id, :name
+.field
+  = f.label :drop_rate_10000
+  %br
+  = f.text_field :drop_rate_10000
+.field
+  = f.label :uncommon_rate_1000
+  %br
+  = f.text_field :uncommon_rate_1000
+.field
+  = f.label :rare_rate_1000
+  %br
+  = f.text_field :rare_rate_1000
+.field
+  = f.label :uncommon_bonus
+  %br
+  = f.text_field :uncommon_bonus
+.field
+  = f.label :rare_bonus
+  %br
+  = f.text_field :rare_bonus
+
+.actions
+  = f.submit
+
+
