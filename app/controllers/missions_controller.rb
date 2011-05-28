@@ -15,7 +15,7 @@ class MissionsController < ApplicationController
         flash[:mission_messages] = @mission.mission_messages.join("\n")
         redirect_to @mission
       else
-        flash[:mission_errors] = @mission.misson_errors.join("\n")
+        flash[:mission_errors] = @mission.mission_errors.join("\n")
         redirect_to @mission
       end
     else

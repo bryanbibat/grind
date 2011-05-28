@@ -6,9 +6,9 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
-    %p.notice= notice
-    %p.alert= alert
-    .auth
+    %p#notice= notice
+    %p#alert= alert
+    #auth
       - if user_signed_in?
         = "Welcome #{ current_user.email }"
         = link_to "sign out", destroy_user_session_path
@@ -16,8 +16,7 @@
         = link_to "sign in", new_user_session_path
         \|
         = link_to "sign up", new_user_registration_path
-    .sidebar
-      Sidebar goes here
+    #sidebar
       - if user_signed_in?
         %p
           = "Level: #{ current_user.level }"
@@ -44,5 +43,7 @@
             %br
             = link_to "Item Maintenance", admin_items_path
 
-    .content
+    #content
       = yield
+    #cleardiv
+      &nbsp;

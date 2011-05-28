@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528102406) do
+ActiveRecord::Schema.define(:version => 20110528110615) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -133,8 +133,8 @@ ActiveRecord::Schema.define(:version => 20110528102406) do
     t.string   "username",                                                 :null => false
     t.string   "display_name"
     t.integer  "xp",                     :limit => 8,   :default => 0
-    t.integer  "health",                 :limit => 8,   :default => 0
-    t.integer  "energy",                 :limit => 8,   :default => 0
+    t.integer  "health",                 :limit => 8,   :default => 100
+    t.integer  "energy",                 :limit => 8,   :default => 100
     t.integer  "credits",                :limit => 8,   :default => 0
     t.integer  "melee",                  :limit => 8,   :default => 5
     t.integer  "ranged",                 :limit => 8,   :default => 5
