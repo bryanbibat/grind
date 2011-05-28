@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :display_name
 
-  def level_xp_req
+  def self.level_xp_req
     #fibonacci sequence
     [10, 20, 30, 50, 80, 
       130, 210, 340, 550, 890, 
@@ -41,6 +41,33 @@ class User < ActiveRecord::Base
   
   def effective_cunning
     cunning
+  end
+
+  def apply_rewards(mission)
+    self.credits += mission.credits_reward
+    add_xp_and_check_level_up mission.xp_reward
+  end
+
+  def xp_for_next_level
+    User.xp_level_req(level - 1)
+  end
+
+  private
+
+  def add_xp_and_check_level_up(xp_bonus)
+    self.xp += xp_bonus
+    while xp >= xp_level_req
+      level_up
+    end
+  end
+
+  def level_up
+    self.level += 1
+    self.available_points += points_for_this_level
+  end
+
+  def points_for_this_level
+    level ** 3
   end
 
 end
