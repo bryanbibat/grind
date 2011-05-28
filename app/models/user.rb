@@ -23,4 +23,24 @@ class User < ActiveRecord::Base
       3654352961620, 5912867298790, 9567220260410, 15480087559200, 25047307819610]
   end
 
+  def effective_melee
+    melee
+  end
+
+  def effective_ranged
+    ranged
+  end
+
+  def effective_defense
+    defense
+  end
+
+  def effective_agility
+    agility
+  end
+  
+  def effective_cunning
+    cunning
+  end
+
 end

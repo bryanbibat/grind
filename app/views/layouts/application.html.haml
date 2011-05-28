@@ -19,9 +19,18 @@
     .sidebar
       Sidebar goes here
       - if user_signed_in?
+        %p
+          = link_to "Home", root_path
+          %br
+          = link_to "Inventory", "#"
+          %br
+          = link_to "Missions", missions_path
+
         - if current_user.admin?
-          %p= link_to "Mission Maintenance", admin_missions_path
-          %p= link_to "Item Maintenance", admin_items_path
+          %p
+            = link_to "Mission Maintenance", admin_missions_path
+            %br
+            = link_to "Item Maintenance", admin_items_path
 
     .content
       = yield

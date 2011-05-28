@@ -8,4 +8,6 @@ Grind::Application.routes.draw do
     resources :items
   end
 
+  resources :missions
+
 end
