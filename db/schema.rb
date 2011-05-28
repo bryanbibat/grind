@@ -10,7 +10,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528023025) do
+ActiveRecord::Schema.define(:version => 20110528024723) do
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.text     "description"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.string   "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.integer  "melee",                :limit => 8, :default => 0
+    t.integer  "ranged",               :limit => 8, :default => 0
+    t.integer  "defense",              :limit => 8, :default => 0
+    t.integer  "agility",              :limit => 8, :default => 0
+    t.integer  "cunning",              :limit => 8, :default => 0
+    t.integer  "req_research",         :limit => 8, :default => 0
+    t.integer  "price",                :limit => 8, :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "items", ["name"], :name => "index_items_on_name", :unique => true
+  add_index "items", ["type"], :name => "index_items_on_type", :unique => true
 
   create_table "missions", :force => true do |t|
     t.string   "name",                              :null => false
@@ -45,6 +67,28 @@ ActiveRecord::Schema.define(:version => 20110528023025) do
   end
 
   add_index "missions", ["name"], :name => "index_missions_on_name", :unique => true
+
+  create_table "owned_items", :force => true do |t|
+    t.integer  "user_id",                                          :null => false
+    t.integer  "item_id",                                          :null => false
+    t.string   "nickname"
+    t.integer  "melee",                :limit => 8, :default => 0
+    t.integer  "ranged",               :limit => 8, :default => 0
+    t.integer  "defense",              :limit => 8, :default => 0
+    t.integer  "agility",              :limit => 8, :default => 0
+    t.integer  "cunning",              :limit => 8, :default => 0
+    t.integer  "price_bonus",          :limit => 8, :default => 0
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string   "rarity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "owned_items", ["item_id"], :name => "index_owned_items_on_item_id"
+  add_index "owned_items", ["user_id"], :name => "index_owned_items_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
