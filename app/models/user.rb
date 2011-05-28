@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :display_name
 
+  validates_numericality_of :available_points, :only_integer => true, :greater_than_or_equal_to => 0
   def self.level_xp_req
     #fibonacci sequence
     [10, 20, 30, 50, 80, 
@@ -56,6 +57,41 @@ class User < ActiveRecord::Base
     self.health -= damage
   end
 
+  def upgrade_melee
+    return if available_points <= 0
+    self.available_points -= 1
+    self.melee += 1
+    save
+  end
+
+  def upgrade_ranged
+    return if available_points <= 0
+    self.available_points -= 1
+    self.ranged += 1
+    save
+  end
+
+  def upgrade_defense
+    return if available_points <= 0
+    self.available_points -= 1
+    self.defense += 1
+    save
+  end
+
+  def upgrade_agility
+    return if available_points <= 0
+    self.available_points -= 1
+    self.agility += 1
+    save
+  end
+
+  def upgrade_cunning
+    return if available_points <= 0
+    self.available_points -= 1
+    self.cunning += 1
+    save
+  end
+
   private
 
   def add_xp_and_check_level_up(xp_bonus)
@@ -68,10 +104,15 @@ class User < ActiveRecord::Base
   def level_up
     self.level += 1
     self.available_points += points_for_this_level
+    self.energy += energy_for_this_level 
   end
 
   def points_for_this_level
-    level ** 3
+    level ** 2
+  end
+
+  def energy_for_this_level
+    points_for_this_level * 5
   end
 
 end

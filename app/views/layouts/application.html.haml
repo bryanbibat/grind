@@ -20,12 +20,8 @@
       Sidebar goes here
       - if user_signed_in?
         %p
-          = link_to "Home", root_path
+          = "Level: #{ current_user.level }"
           %br
-          = link_to "Inventory", "#"
-          %br
-          = link_to "Missions", missions_path
-        %p
           = "HP: #{ current_user.health }"
           %br
           = "Energy: #{ current_user.energy }"
@@ -33,6 +29,12 @@
           = "Credits: #{ current_user.credits }"
           %br
           = "XP: #{ current_user.xp }/#{current_user.xp_for_next_level}"
+        %p
+          = link_to "Home", root_path
+          %br
+          = link_to "Inventory", "#"
+          %br
+          = link_to "Missions", missions_path
 
         - if current_user.admin?
           %p

@@ -1,2 +1,41 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+%h2 
+  Your Dashboard 
+
+%h3= current_user.display_name
+
+%table
+  - if current_user.available_points > 0 
+    %tr
+      %th Available points:
+      %td= current_user.available_points
+  %tr
+    %th Melee:
+    %td= "#{current_user.effective_melee} (#{current_user.melee} base)" 
+    %td 
+      - if current_user.available_points > 0 
+        = link_to "+", upgrade_melee_profile_path, :method => :post
+  %tr
+    %th Ranged:
+    %td= "#{current_user.effective_ranged} (#{current_user.ranged} base)" 
+    %td 
+      - if current_user.available_points > 0 
+        = link_to "+", upgrade_ranged_profile_path, :method => :post
+  %tr
+    %th Defense:
+    %td= "#{current_user.effective_defense} (#{current_user.defense} base)" 
+    %td 
+      - if current_user.available_points > 0 
+        = link_to "+", upgrade_defense_profile_path, :method => :post
+  %tr
+    %th Agility:
+    %td= "#{current_user.effective_agility} (#{current_user.agility} base)" 
+    %td 
+      - if current_user.available_points > 0 
+        = link_to "+", upgrade_agility_profile_path, :method => :post
+  %tr
+    %th Cunning:
+    %td= "#{current_user.effective_cunning} (#{current_user.cunning} base)" 
+    %td 
+      - if current_user.available_points > 0 
+        = link_to "+", upgrade_cunning_profile_path, :method => :post
+  

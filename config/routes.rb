@@ -14,5 +14,12 @@ Grind::Application.routes.draw do
     end
   end
 
+  resource :profile do
+    post "upgrade_melee"
+    post "upgrade_ranged"
+    post "upgrade_defense"
+    post "upgrade_agility"
+    post "upgrade_cunning"
+  end
 
 end
