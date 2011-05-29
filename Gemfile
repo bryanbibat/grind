@@ -6,6 +6,7 @@ gem 'devise'
 gem 'paperclip'
 gem 'haml'
 gem 'mysql2', '0.2.7'
+gem 'capistrano'
 
 group :development, :test do
   gem 'capybara'
