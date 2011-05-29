@@ -25,7 +25,7 @@ end
 
 after "deploy:update_code", :copy_production_database_configuration
 after "deploy:setup", :setup_pictures_folder 
-after "deploy:symlink", :create_symlink_to_pictures_folder 
+after "deploy:symlink", :create_symlink_to_pictures_folder, :create_symlink_to_log 
 
 task :setup_pictures_folder do
   run "cd #{shared_path}; mkdir pictures"
@@ -35,3 +35,6 @@ task :create_symlink_to_pictures_folder do
   run "cd #{current_path}/public; rm -rf system; ln -s #{shared_path}/pictures system"
 end
 
+task :create_symlink_to_log do
+  run "cd #{current_path}; rm -rf log; ln -s #{shared_path}/log log"
+end
